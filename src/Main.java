@@ -13,15 +13,11 @@ public class Main {
     public static void main(String[] args) throws IOException, InterruptedException {
 
         String key="99d8bdb1c2dd1adb66b66f87";
-//        String pais="HNL";
-//        String convertir="USD";
-//        double cantidad=500;
         Scanner scan= new Scanner(System.in);
-
 
         int contador =0;
         while (contador!=5){
-            System.out.println("""
+                System.out.println("""
                 ********************************
                 Bienvenido a conversor de monedas OnLine
                 ********************************
@@ -57,7 +53,7 @@ public class Main {
                 UYU	para Uruguay
                 VES	para Venezuela
                 """);
-            try {
+
             String paisOrigen=scan.next().substring(0,3).trim();
 
             System.out.println("""
@@ -102,24 +98,25 @@ public class Main {
                 if(paisOrigen!=null || paisAConvertir!= null || paisOrigen.length()>=4 || paisAConvertir.length()>=4){
                     URI uri = URI.create("https://v6.exchangerate-api.com/v6/"+key+"/pair/"+paisOrigen+"/"+paisAConvertir+"/"+cantidad);
 
-            HttpClient client=HttpClient.newHttpClient();
-            HttpRequest request= HttpRequest.newBuilder()
+                HttpClient client=HttpClient.newHttpClient();
+                HttpRequest request= HttpRequest.newBuilder()
                     .uri(uri)
                     .build();
 
-            HttpResponse<String> response=client
+                HttpResponse<String> response=client
                     .send(request,HttpResponse.BodyHandlers.ofString());
 
+                String json= response.body();
 
-            String json= response.body();
+                Gson gson= new Gson();
+                    System.out.println(gson);
 
-            Gson gson= new Gson();
-            RecordMoneda recordMoneda = gson.fromJson(json, RecordMoneda.class);
+                        RecordMoneda recordMoneda = gson.fromJson(json, RecordMoneda.class);
 
-            Moneda miMoneda= new Moneda(recordMoneda,cantidad);
+                        Moneda miMoneda= new Moneda(recordMoneda,cantidad);
 
+                    System.out.println(miMoneda);
 
-            System.out.println(miMoneda);
                     System.out.println("""
                     *********************
                     1 si desea seguir con la aplicacion
@@ -133,12 +130,9 @@ public class Main {
 
                 }
 
-            }catch (StringIndexOutOfBoundsException e){
-                System.out.println("error de escritura solo siglas dichas y en mayusculas");
+
             }
-
-        }
-
 
     }
 }
+

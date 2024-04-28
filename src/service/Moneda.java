@@ -7,6 +7,7 @@ public class Moneda {
     private double taza_conversion;
     private double resultado;
     private double cantidad;
+    private String error;
 
     public Moneda(RecordMoneda recordMoneda,double cantidad) {
         this.moneda= recordMoneda.base_code();
@@ -14,6 +15,11 @@ public class Moneda {
         this.taza_conversion= recordMoneda.conversion_rate();
         this.resultado= recordMoneda.conversion_result();
         this.cantidad=cantidad;
+        this.error= recordMoneda.result();
+    }
+
+    public String getError() {
+        return error;
     }
 
     public String getMoneda() {
