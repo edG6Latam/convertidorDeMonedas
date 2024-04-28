@@ -63,6 +63,7 @@ para saber mas de lista de paises en la aplicacion puede entrar a buscar aca la 
 ## Errores en programa
 
 Esta aplicacion solo acepta siglas de tu pais de origen  y no acepta numeros ni espacios 
+no se aceptan numeros a convertir menores o iguales a 0.
 
 ## Reconocimientos
 
