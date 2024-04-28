@@ -109,7 +109,7 @@ public class Main {
                 String json= response.body();
 
                 Gson gson= new Gson();
-                    System.out.println(gson);
+//                    System.out.println(gson);
 
                         RecordMoneda recordMoneda = gson.fromJson(json, RecordMoneda.class);
 
